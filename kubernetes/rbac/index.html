@@ -277,6 +277,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    Assumptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#helpful-links" class="md-nav__link">
     Helpful Links
   </a>
@@ -328,6 +335,86 @@
   <a href="#the-basics" class="md-nav__link">
     The Basics
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-service-account-and-namespace" class="md-nav__link">
+    Create a Service Account and Namespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role" class="md-nav__link">
+    Role
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-find-any-of-the-following-on-an-api-resource" class="md-nav__link">
+    How do I find any of the following on an API resource?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#now-lets-apply-the-role" class="md-nav__link">
+    Now Lets apply the Role
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rolebinding" class="md-nav__link">
+    RoleBinding
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#now-lets-apply-the-rolebinding" class="md-nav__link">
+    Now Lets apply the RoleBinding
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-our-new-role" class="md-nav__link">
+    Using our new role
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -368,6 +455,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    Assumptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#helpful-links" class="md-nav__link">
     Helpful Links
   </a>
@@ -420,6 +514,86 @@
     The Basics
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-service-account-and-namespace" class="md-nav__link">
+    Create a Service Account and Namespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role" class="md-nav__link">
+    Role
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-find-any-of-the-following-on-an-api-resource" class="md-nav__link">
+    How do I find any of the following on an API resource?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#now-lets-apply-the-role" class="md-nav__link">
+    Now Lets apply the Role
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rolebinding" class="md-nav__link">
+    RoleBinding
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#now-lets-apply-the-rolebinding" class="md-nav__link">
+    Now Lets apply the RoleBinding
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-our-new-role" class="md-nav__link">
+    Using our new role
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -440,9 +614,16 @@
                 
                 
                 <h1 id="role-based-access-control-rbac">Role Based Access Control (RBAC)</h1>
+<h2 id="assumptions">Assumptions</h2>
+<ul>
+<li>You are familiar with <a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/" target="_blank">Kubernetes</a></li>
+<li>You are familiar with <a href="https://kubectl.docs.kubernetes.io/pages/kubectl_book/getting_started.html" target="_blank">kubectl</a></li>
+<li>Many of the examples in this doc assume you are using Microk8s but can be easily modified to work with vanilla kubectl</li>
+</ul>
 <h2 id="helpful-links">Helpful Links</h2>
 <ul>
 <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/" target="_blank">RBAC Overview (Docs)</a></li>
+<li><a href="https://kubernetes.io/docs/reference/using-api/api-concepts/" target="_blank">API Concepts (Docs)</a></li>
 <li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/" target="_blank">Configuring Service Accounts (Docs)</a></li>
 <li><a href="https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md" target="_blank">Reference Documentation accessing Service Account API Tokens (Docs)</a></li>
 <li><a href="https://jeremievallee.com/2018/05/28/kubernetes-rbac-namespace-user.html" target="_blank">Restrict User to one Namespace (Blog)</a></li>
@@ -458,7 +639,7 @@
 <p>I recommended that you perform all RBAC examples within a throwaway Kubernetes cluster until you become more familiar with it.</p>
 <p>I recommend using <a href="https://microk8s.io/" target="_blank">Microk8s</a> to spin up a dev cluster fast.</p>
 </div>
-<details class="note"><summary>Show me how to setup a kubernetes cluster with RBAC</summary><h3 id="install-latest-stable-version-of-kubernetes-via-snap">Install latest stable version of Kubernetes via Snap</h3>
+<details class="note"><summary>Show me how to setup a kubernetes cluster with RBAC and Microk8s</summary><h3 id="install-latest-stable-version-of-kubernetes-via-snap">Install latest stable version of Kubernetes via Snap</h3>
 <div class="highlight"><pre><span></span><span class="go">snap install microk8s --classic</span>
 </pre></div>
 
@@ -477,6 +658,157 @@
 <p>See <a href="https://microk8s.io/docs/" target="_blank">Microk8s Docs</a> for more information.</p>
 </details>
 <h2 id="the-basics">The Basics</h2>
+<p>There are 4 main components to implementing RBAC in Kubernetes:</p>
+<ol>
+<li><code>Role</code> - Define a set of permissions to resources within a single namespace.</li>
+<li><code>ClusterRole</code> - Grant similar permissions to <code>Role</code> but scoped to the cluster (i.e. Nodes), across multiple namespaces or against non-resource endpoints.</li>
+<li><code>RoleBinding</code> - Grant permissions defined in a role to a user or group of users (or service accounts) within a namespace.</li>
+<li><code>ClusterRoleBinding</code> - Same as <code>RoleBinding</code> but cluster-wide.</li>
+</ol>
+<h3 id="examples">Examples</h3>
+<p>Lets perform some practical examples leveraging the above components.</p>
+<h4 id="create-a-service-account-and-namespace">Create a Service Account and Namespace</h4>
+<div class="highlight"><pre><span></span><span class="go">cat &lt;&lt;EOF | microk8s.kubectl apply -f -</span>
+<span class="go">apiVersion: v1</span>
+<span class="go">kind: Namespace</span>
+<span class="go">metadata:</span>
+<span class="go">  name: dev</span>
+<span class="go">---</span>
+<span class="go">apiVersion: v1</span>
+<span class="go">kind: ServiceAccount</span>
+<span class="go">metadata:</span>
+<span class="go">  name: dev-pod-user</span>
+<span class="go">  namespace: dev</span>
+<span class="go">EOF</span>
+</pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Service Accounts</strong> are Namespaced which means a service account must be created for every namespace you plan to leverage them. </p>
+<p>Although, you can grant cluster permissions to a Service Account it cannot be used outside the namespace it was created in. We will validate this further down.</p>
+</div>
+<h4 id="role">Role</h4>
+<div class="admonition example">
+<p class="admonition-title">Role definition</p>
+<p>Let's define a Role called <code>full-access-to-pods</code> which we will grant access to the <code>pods</code> resource in the core API group (<code>""</code>) allowing all (<code>'*'</code>) API verbs. Basically granting full access to the <code>/api/v1/pods</code> Kubernetes API within the <code>dev</code> namespace.</p>
+<div class="highlight"><pre><span></span><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Role</span>
+<span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">full-access-to-pods</span>
+  <span class="nt">namespace</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+<span class="nt">rules</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">apiGroups</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;&quot;</span>
+  <span class="nt">resources</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pods</span>
+  <span class="nt">verbs</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;*&#39;</span>
+</pre></div>
+
+</div>
+<h5 id="how-do-i-find-any-of-the-following-on-an-api-resource">How do I find any of the following on an API resource?</h5>
+<ol>
+<li>If the resource is Namespaced (scoped to a namespace)</li>
+<li>What API Group it's apart of</li>
+<li>What Verbs are allowed</li>
+</ol>
+<p>Resource names, shortnames, api groups, if the resource is namespaced (true/false), kind and allowed verbs are all available via the <code>microk8s.kubectl api-resources -o wide</code> command.</p>
+<details class="note"><summary>Show me how to obtain API Resource details via kubectl</summary><div class="highlight"><pre><span></span><span class="gp">$</span> microk8s.kubectl api-resources -o wide
+<span class="go">NAME                              SHORTNAMES   APIGROUP                       NAMESPACED   KIND                                 VERBS</span>
+<span class="go">bindings                                                                      true         Binding                              [create]</span>
+<span class="go">componentstatuses                 cs                                          false        ComponentStatus                      [get list]</span>
+<span class="go">configmaps                        cm                                          true         ConfigMap                            [create delete deletecollection get list patch update watch]</span>
+<span class="go">endpoints                         ep                                          true         Endpoints                            [create delete deletecollection get list patch update watch]</span>
+<span class="go">events                            ev                                          true         Event                                [create delete deletecollection get list patch update watch]</span>
+<span class="go">limitranges                       limits                                      true         LimitRange                           [create delete deletecollection get list patch update watch]</span>
+<span class="go">namespaces                        ns                                          false        Namespace                            [create delete get list patch update watch]</span>
+<span class="go">nodes                             no                                          false        Node                                 [create delete deletecollection get list patch update watch]</span>
+<span class="go">persistentvolumeclaims            pvc                                         true         PersistentVolumeClaim                [create delete deletecollection get list patch update watch]</span>
+<span class="go">persistentvolumes                 pv                                          false        PersistentVolume                     [create delete deletecollection get list patch update watch]</span>
+<span class="go">pods                              po                                          true         Pod                                  [create delete deletecollection get list patch update watch]</span>
+<span class="go">podtemplates                                                                  true         PodTemplate                          [create delete deletecollection get list patch update watch]</span>
+<span class="go">[snipped]</span>
+<span class="go">horizontalpodautoscalers          hpa          autoscaling                    true         HorizontalPodAutoscaler              [create delete deletecollection get list patch update watch]</span>
+<span class="go">cronjobs                          cj           batch                          true         CronJob                              [create delete deletecollection get list patch update watch]</span>
+<span class="go">jobs                                           batch                          true         Job                                  [create delete deletecollection get list patch update watch]</span>
+<span class="go">certificatesigningrequests        csr          certificates.k8s.io            false        CertificateSigningRequest            [create delete deletecollection get list patch update watch]</span>
+<span class="go">leases                                         coordination.k8s.io            true         Lease                                [create delete deletecollection get list patch update watch]</span>
+<span class="go">endpointslices                                 discovery.k8s.io               true         EndpointSlice                        [create delete deletecollection get list patch update watch]</span>
+<span class="go">events                            ev           events.k8s.io                  true         Event                                [create delete deletecollection get list patch update watch]</span>
+<span class="go">ingresses                         ing          extensions                     true         Ingress                              [create delete deletecollection get list patch update watch]</span>
+<span class="go">ingresses                         ing          networking.k8s.io              true         Ingress                              [create delete deletecollection get list patch update watch]</span>
+<span class="go">networkpolicies                   netpol       networking.k8s.io              true         NetworkPolicy                        [create delete deletecollection get list patch update watch]</span>
+<span class="go">runtimeclasses                                 node.k8s.io                    false        RuntimeClass                         [create delete deletecollection get list patch update watch]</span>
+<span class="go">poddisruptionbudgets              pdb          policy                         true         PodDisruptionBudget                  [create delete deletecollection get list patch update watch]</span>
+<span class="go">podsecuritypolicies               psp          policy                         false        PodSecurityPolicy                    [create delete deletecollection get list patch update watch]</span>
+<span class="go">clusterrolebindings                            rbac.authorization.k8s.io      false        ClusterRoleBinding                   [create delete deletecollection get list patch update watch]</span>
+<span class="go">[snipped]</span>
+</pre></div>
+
+</details>
+<h5 id="now-lets-apply-the-role">Now Lets apply the Role</h5>
+<div class="highlight"><pre><span></span><span class="go">cat &lt;&lt;EOF | microk8s.kubectl apply -f -</span>
+<span class="go">kind: Role</span>
+<span class="go">apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="go">metadata:</span>
+<span class="go">  name: full-access-to-pods</span>
+<span class="go">  namespace: dev</span>
+<span class="go">rules:</span>
+<span class="go">- apiGroups:</span>
+<span class="go">  - &quot;&quot;</span>
+<span class="go">  resources:</span>
+<span class="go">  - pods</span>
+<span class="go">  verbs:</span>
+<span class="go">  - &#39;*&#39;</span>
+<span class="go">EOF</span>
+</pre></div>
+
+<h4 id="rolebinding">RoleBinding</h4>
+<p>Now that we created a new namespace called <code>dev</code>, a service account called <code>dev-pod-user</code> and a role called <code>full-access-to-pods</code> lets associate them together with a RoleBinding.</p>
+<div class="admonition example">
+<p class="admonition-title">RoleBinding definition</p>
+<p>Let's define a RoleBinding called <code>full-access-to-pods-role-binding</code> which we will grant service account <code>dev-pod-user</code> access to the <code>full-access-to-pods</code> role.</p>
+<div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RoleBinding</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">full-access-to-pods-role-binding</span>
+  <span class="nt">namespace</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+<span class="nt">roleRef</span><span class="p">:</span>
+  <span class="nt">apiGroup</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+  <span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Role</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">full-access-to-pods</span>
+<span class="nt">subjects</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dev-pod-user</span>
+</pre></div>
+
+<p>See <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding" target="_blank">Binding Documentation</a> for more information.</p>
+</div>
+<h5 id="now-lets-apply-the-rolebinding">Now Lets apply the RoleBinding</h5>
+<div class="highlight"><pre><span></span><span class="go">cat &lt;&lt;EOF | microk8s.kubectl apply -f -</span>
+<span class="go">apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="go">kind: RoleBinding</span>
+<span class="go">metadata:</span>
+<span class="go">  name: full-access-to-pods-role-binding</span>
+<span class="go">  namespace: dev</span>
+<span class="go">roleRef:</span>
+<span class="go">  apiGroup: rbac.authorization.k8s.io</span>
+<span class="go">  kind: Role</span>
+<span class="go">  name: full-access-to-pods</span>
+<span class="go">subjects:</span>
+<span class="go">- kind: ServiceAccount</span>
+<span class="go">  name: dev-pod-user</span>
+<span class="go">EOF</span>
+</pre></div>
+
+<div class="admonition tldr">
+<p class="admonition-title">Tldr</p>
+<p>In order to create a service account you need to target an existing namespace or create a new one.</p>
+<p>A role can be created without a specific service account in mind but also need to target an existing namespace or create a new one.</p>
+<p>When creating a RoleBinding you will need to target a namespace, an existing role (roleRef) in that namespace and a user, group, or service account (subject).</p>
+</div>
+<h4 id="using-our-new-role">Using our new role</h4>
+<p>TODO</p>
                 
                   
                 
