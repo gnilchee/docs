@@ -1,0 +1,24 @@
+site_name: Greg's Notes
+site_description: Just a place for me to keep notes.
+site_author: Greg Nilchee
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.details
+nav:
+  - Welcome: index.md
+  - Kubernetes:
+    - RBAC: kubernetes/rbac.md
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    primary: black
+    accent: black
+  font:
+    text: Ubuntu
+    code: Ubuntu Mono
+  logo:
+    icon: backup
+  favicon: assets/images/favicon.ico
