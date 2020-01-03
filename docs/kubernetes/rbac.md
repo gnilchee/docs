@@ -56,7 +56,7 @@ There are 4 main components to implementing RBAC in Kubernetes:
 
 ### Examples
 
-Lets perform some practical examples leveraging the above components.
+Let's perform some practical exercises leveraging the above components.
 
 #### Create a Service Account and Namespace
 
@@ -83,7 +83,7 @@ EOF
 #### Role
 
 !!! example "Role definition"
-    Let's define a Role called `full-access-to-pods` which we will grant access to the `pods` resource in the core API group (`""`) allowing all (`'*'`) API verbs. Basically granting full access to the `/api/v1/pods` Kubernetes API within the `dev` namespace.
+    We defined a Role called `full-access-to-pods` which we will grant access to the `pods` resource in the core API group (`""`) allowing all (`'*'`) API verbs. Basically granting full access to the `/api/v1/pods` Kubernetes API within the `dev` namespace.
 
     ```yaml
     kind: Role
@@ -142,7 +142,7 @@ Resource names, shortnames, api groups, if the resource is namespaced (true/fals
     [snipped]
     ```
 
-##### Now Lets apply the Role
+##### Apply the Role
 
 ```console
 cat <<EOF | microk8s.kubectl apply -f -
@@ -163,7 +163,7 @@ EOF
 
 #### RoleBinding
 
-Now that we created a new namespace called `dev`, a service account called `dev-pod-user` and a role called `full-access-to-pods` lets associate them together with a RoleBinding.
+Now that we created a new namespace called `dev`, a service account called `dev-pod-user` and a role called `full-access-to-pods` and associate them together with a RoleBinding.
 
 !!! example "RoleBinding definition"
     Let's define a RoleBinding called `full-access-to-pods-role-binding` which we will grant service account `dev-pod-user` access to the `full-access-to-pods` role.
@@ -185,7 +185,7 @@ Now that we created a new namespace called `dev`, a service account called `dev-
 
     See <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding" target="_blank">Binding Documentation</a> for more information.
 
-##### Now Lets apply the RoleBinding
+##### Now apply the RoleBinding
 
 ```console
 cat <<EOF | microk8s.kubectl apply -f -
@@ -212,5 +212,250 @@ EOF
     When creating a RoleBinding you will need to target a namespace, an existing role (roleRef) in that namespace and a user, group, or service account (subject).
 
 #### Using our new role
+
+Now let's add a sample deployment to the `dev` namespace based on Istio's <a href="https://github.com/istio/istio/blob/master/samples/httpbin/httpbin.yaml" target="_blank">httpbin</a> sample application.
+
+##### Deploy a reference pod
+
+The sample application deployment will launch a single pod with a python based application which will use the default service account in the `dev` namespace. Refer to <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server" target="_blank">Kubernetes documentation</a> to get more information on the default behavior when launching a pod.
+
+```console
+cat <<EOF | microk8s.kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpbin
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: httpbin
+        version: v1
+    spec:
+      containers:
+      - image: docker.io/kennethreitz/httpbin
+        imagePullPolicy: IfNotPresent
+        name: httpbin
+        ports:
+        - containerPort: 80
+EOF
+```
+
+!!! example "Now confirm the Service Account used for the Pod"
+
+    Below we confirmed that the deployment launched the pod with the `default` service account.
+    ```console
+    $ microk8s.kubectl get pod httpbin-768b999cb5-5c4cl -n dev -o yaml| grep serviceAccountName
+      serviceAccountName: default
+    ```
+
+    Also note that Kubernetes automatically mounts the default token into the pod
+    ```console
+    $ microk8s.kubectl get pod httpbin-768b999cb5-5c4cl -n dev -o yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+    [snipped]
+      name: httpbin-768b999cb5-5c4cl
+    [snipped]
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-nlzgt
+          readOnly: true
+    ```
+
+    Exec into the httpbin container and see what data gets mounted in as a result
+    ```console
+    root@httpbin-768b999cb5-5c4cl:/# ls -l /var/run/secrets/kubernetes.io/serviceaccount
+    total 0
+    lrwxrwxrwx 1 root root 13 Jan  3 04:08 ca.crt -> ..data/ca.crt
+    lrwxrwxrwx 1 root root 16 Jan  3 04:08 namespace -> ..data/namespace
+    lrwxrwxrwx 1 root root 12 Jan  3 04:08 token -> ..data/token
+
+    root@httpbin-768b999cb5-5c4cl:/# cat /var/run/secrets/kubernetes.io/serviceaccount/namespace; echo
+    dev
+
+    root@httpbin-768b999cb5-5c4cl:/# cat /var/run/secrets/kubernetes.io/serviceaccount/token; echo
+    eyJhbGciOiJSUzI1NiIsImtpZCI6Ikxh...EsHorrcKBTnSa10OORjOrFpg
+    ```
+
+###### How can we leverage the service account
+
+We now know that Kubernetes automatically assigns a service account and mounts in the token and namespace which can be leveraged by tools such as `kubectl` and Kubernetes client libraries. Let's see how this can be useful and add `kubectl` to the container and attempt to perform some commands and see if anything special is needed to get it to work.
+
+!!! example "Issue commands from within the Pod container"
+
+    First we download `kubectl` binary down to the Microk8s instance
+    ```console
+    $ curl -s -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl
+    $ chmod +x kubectl
+    $ ls
+    kubectl  snap
+    ```
+
+    Now we copy the `kubectl` into the Pod's container
+    ```console
+    $ microk8s.kubectl get pods -n dev
+    NAME                       READY   STATUS    RESTARTS   AGE
+    httpbin-768b999cb5-5c4cl   1/1     Running   0          44m
+    $ microk8s.kubectl cp kubectl dev/httpbin-768b999cb5-5c4cl:/tmp/kubectl
+    $
+    ```
+
+    Finally, let's exec into the container and run the `/tmp/kubectl get pods` command
+    ```console
+    $ microk8s.kubectl exec -it httpbin-768b999cb5-5c4cl -n dev -- /bin/bash
+    root@httpbin-768b999cb5-5c4cl:/# /tmp/kubectl get pods
+    Error from server (Forbidden): pods is forbidden: User "system:serviceaccount:dev:default" cannot list resource "pods" in API group "" in the namespace "dev"
+    ```
+
+###### Review
+
+Examining what we know so far is that by default when we don't define a service account Kubernetes will automatically assign one and mount in the account's token and the namespace of the pod which we can use a tool like `kubectl` to execute commands. Looking specifically at the above example we can see that by running `/tmp/kubectl get pods` it can determine the pod's namespace and token to use by looking in that directory.
+
+
+!!! question
+    How does `kubectl` know what endpoint to issue calls against to hit the Kubernetes API?
+
+!!! example "It turns out Kubernetes injects env vars into the pod"
+
+    ```console
+    root@httpbin-768b999cb5-5c4cl:/# env| grep -i kubernetes
+    KUBERNETES_PORT_443_TCP_PROTO=tcp
+    KUBERNETES_PORT_443_TCP_ADDR=10.152.183.1
+    KUBERNETES_PORT=tcp://10.152.183.1:443
+    KUBERNETES_SERVICE_PORT_HTTPS=443
+    KUBERNETES_PORT_443_TCP_PORT=443
+    KUBERNETES_PORT_443_TCP=tcp://10.152.183.1:443
+    KUBERNETES_SERVICE_PORT=443
+    KUBERNETES_SERVICE_HOST=10.152.183.1
+    ```
+
+    If we unset the `KUBERNETES_SERVICE_HOST` var we confirm it breaks `kubectl`
+    ```console
+    root@httpbin-768b999cb5-5c4cl:/# unset KUBERNETES_SERVICE_HOST
+    root@httpbin-768b999cb5-5c4cl:/# /tmp/kubectl get pods
+    The connection to the server localhost:8080 was refused - did you specify the right host or port?
+    ```
+
+##### Deploy a pod that uses our new role
+
+Since we now know what happens when we launch a pod with the `default` service account let's launch a new pod that will use the `dev-pod-user` service account and the `full-access-to-pods` role we created earlier.
+
+We will launch a new deployment called `deb-test` and assign the new service account `dev-pod-user` into the `dev` namespace.
+
+```console
+cat <<EOF | microk8s.kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deb-test
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deb-test
+  template:
+    metadata:
+      labels:
+        app: deb-test
+    spec:
+      serviceAccountName: dev-pod-user
+      containers:
+      - image: debian:latest
+        imagePullPolicy: IfNotPresent
+        name: deb-test
+        command:
+          - sleep
+          - "3600"
+      restartPolicy: Always
+EOF
+```
+
+!!! example "Now confirm the Service Account used for the new Pod"
+
+    We first confirm the new deployment launched the pod with the `dev-pod-user` service account.
+    ```console
+    $ microk8s.kubectl get pod deb-test-669c58cc9d-99gz4 -n dev -o yaml| grep serviceAccountName
+      serviceAccountName: dev-pod-user
+    ```
+
+    Also confirm that Kubernetes mounts the `dev-pod-user` token into the pod
+    ```console
+    $ microk8s.kubectl get pod deb-test-669c58cc9d-99gz4 -n dev -o yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+    [snipped]
+      name: deb-test-669c58cc9d-99gz4
+      namespace: dev
+    [snipped]
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: dev-pod-user-token-mngkj
+          readOnly: true
+    ```
+
+###### Now we leverage the new service account
+
+Great! We confirmed that with our new deployment Kubernetes assigned the `dev-pod-user` service account and mounted in the token and namespace as it did with our reference deployment. Let's repeat the test from before but it will now use our new role.
+
+!!! example "Issue commands from within the new Pod container"
+
+    Since we already downloaded the `kubectl` binary we just need to copy it into the new container
+    ```console
+    $ microk8s.kubectl get pods -n dev| grep deb-test
+    deb-test-669c58cc9d-99gz4   1/1     Running   0          10m
+    $ microk8s.kubectl cp kubectl dev/deb-test-669c58cc9d-99gz4:/tmp/kubectl
+    $
+    ```
+
+    Now let's exec into the deb-test container and run `/tmp/kubectl get pods` again and see if we still get a permission error
+    ```console
+    $ microk8s.kubectl exec -it deb-test-669c58cc9d-99gz4 -n dev -- /bin/bash
+    root@deb-test-669c58cc9d-99gz4:/# /tmp/kubectl get pods
+    NAME                        READY   STATUS    RESTARTS   AGE
+    deb-test-669c58cc9d-99gz4   1/1     Running   0          13m
+    httpbin-768b999cb5-5c4cl    1/1     Running   0          111m
+    ```
+
+    Let's also try to delete another pod in the `dev` namespace and confirm that also works
+    ```console
+    root@deb-test-669c58cc9d-99gz4:/# /tmp/kubectl delete pod httpbin-768b999cb5-5c4cl
+    pod "httpbin-768b999cb5-5c4cl" deleted
+    root@deb-test-669c58cc9d-99gz4:/# /tmp/kubectl get pods
+    NAME                        READY   STATUS    RESTARTS   AGE
+    deb-test-669c58cc9d-99gz4   1/1     Running   0          23m
+    httpbin-768b999cb5-dtwhd    1/1     Running   0          13s
+    ```
+
+    🎉🎉🎉 Success! We are now able to get and delete pods in the dev namespace. Our role works as expected.
+
+We confirmed that by using our new service account and role we created earlier we have full access to the pod API in the `dev` namespace. Like we mentioned in the <a href="#the-basics">The Basics</a> section a Role only applies to the namespace it was created in. Let's attempt to get pods again but across all namespaces.
+
+!!! question
+    What happens across namespaces?
+
+!!! example "We get a different permission error"
+
+    ```console
+    root@deb-test-669c58cc9d-99gz4:/# /tmp/kubectl get pods --all-namespaces
+    Error from server (Forbidden): pods is forbidden: User "system:serviceaccount:dev:dev-pod-user" cannot list resource "pods" in API group "" at the cluster scope
+    ```
+
+    🔥🔥🔥 It fails with another permission issue but we expected this one.
+
+###### Review
+
+As expected, we get a permission error in the above example saying that you cannot list resource "pods" at the cluster scope in the core API group. Basically, in order to list pods outside the `dev` namespace we will need to create a ClusterRole (cluster scoped).
+
+#### ClusterRole
 
 TODO
