@@ -370,8 +370,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#now-lets-apply-the-role" class="md-nav__link">
-    Now Lets apply the Role
+  <a href="#apply-the-role" class="md-nav__link">
+    Apply the Role
   </a>
   
 </li>
@@ -390,8 +390,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#now-lets-apply-the-rolebinding" class="md-nav__link">
-    Now Lets apply the RoleBinding
+  <a href="#now-apply-the-rolebinding" class="md-nav__link">
+    Now apply the RoleBinding
   </a>
   
 </li>
@@ -404,6 +404,73 @@
           <li class="md-nav__item">
   <a href="#using-our-new-role" class="md-nav__link">
     Using our new role
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deploy-a-reference-pod" class="md-nav__link">
+    Deploy a reference pod
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-can-we-leverage-the-service-account" class="md-nav__link">
+    How can we leverage the service account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-a-pod-that-uses-our-new-role" class="md-nav__link">
+    Deploy a pod that uses our new role
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#now-we-leverage-the-new-service-account" class="md-nav__link">
+    Now we leverage the new service account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review_1" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clusterrole" class="md-nav__link">
+    ClusterRole
   </a>
   
 </li>
@@ -548,8 +615,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#now-lets-apply-the-role" class="md-nav__link">
-    Now Lets apply the Role
+  <a href="#apply-the-role" class="md-nav__link">
+    Apply the Role
   </a>
   
 </li>
@@ -568,8 +635,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#now-lets-apply-the-rolebinding" class="md-nav__link">
-    Now Lets apply the RoleBinding
+  <a href="#now-apply-the-rolebinding" class="md-nav__link">
+    Now apply the RoleBinding
   </a>
   
 </li>
@@ -582,6 +649,73 @@
           <li class="md-nav__item">
   <a href="#using-our-new-role" class="md-nav__link">
     Using our new role
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deploy-a-reference-pod" class="md-nav__link">
+    Deploy a reference pod
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-can-we-leverage-the-service-account" class="md-nav__link">
+    How can we leverage the service account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-a-pod-that-uses-our-new-role" class="md-nav__link">
+    Deploy a pod that uses our new role
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#now-we-leverage-the-new-service-account" class="md-nav__link">
+    Now we leverage the new service account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review_1" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clusterrole" class="md-nav__link">
+    ClusterRole
   </a>
   
 </li>
@@ -666,7 +800,7 @@
 <li><code>ClusterRoleBinding</code> - Same as <code>RoleBinding</code> but cluster-wide.</li>
 </ol>
 <h3 id="examples">Examples</h3>
-<p>Lets perform some practical examples leveraging the above components.</p>
+<p>Let's perform some practical exercises leveraging the above components.</p>
 <h4 id="create-a-service-account-and-namespace">Create a Service Account and Namespace</h4>
 <div class="highlight"><pre><span></span><span class="go">cat &lt;&lt;EOF | microk8s.kubectl apply -f -</span>
 <span class="go">apiVersion: v1</span>
@@ -690,7 +824,7 @@
 <h4 id="role">Role</h4>
 <div class="admonition example">
 <p class="admonition-title">Role definition</p>
-<p>Let's define a Role called <code>full-access-to-pods</code> which we will grant access to the <code>pods</code> resource in the core API group (<code>""</code>) allowing all (<code>'*'</code>) API verbs. Basically granting full access to the <code>/api/v1/pods</code> Kubernetes API within the <code>dev</code> namespace.</p>
+<p>We defined a Role called <code>full-access-to-pods</code> which we will grant access to the <code>pods</code> resource in the core API group (<code>""</code>) allowing all (<code>'*'</code>) API verbs. Basically granting full access to the <code>/api/v1/pods</code> Kubernetes API within the <code>dev</code> namespace.</p>
 <div class="highlight"><pre><span></span><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Role</span>
 <span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -746,7 +880,7 @@
 </pre></div>
 
 </details>
-<h5 id="now-lets-apply-the-role">Now Lets apply the Role</h5>
+<h5 id="apply-the-role">Apply the Role</h5>
 <div class="highlight"><pre><span></span><span class="go">cat &lt;&lt;EOF | microk8s.kubectl apply -f -</span>
 <span class="go">kind: Role</span>
 <span class="go">apiVersion: rbac.authorization.k8s.io/v1</span>
@@ -764,7 +898,7 @@
 </pre></div>
 
 <h4 id="rolebinding">RoleBinding</h4>
-<p>Now that we created a new namespace called <code>dev</code>, a service account called <code>dev-pod-user</code> and a role called <code>full-access-to-pods</code> lets associate them together with a RoleBinding.</p>
+<p>Now that we created a new namespace called <code>dev</code>, a service account called <code>dev-pod-user</code> and a role called <code>full-access-to-pods</code> and associate them together with a RoleBinding.</p>
 <div class="admonition example">
 <p class="admonition-title">RoleBinding definition</p>
 <p>Let's define a RoleBinding called <code>full-access-to-pods-role-binding</code> which we will grant service account <code>dev-pod-user</code> access to the <code>full-access-to-pods</code> role.</p>
@@ -784,7 +918,7 @@
 
 <p>See <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding" target="_blank">Binding Documentation</a> for more information.</p>
 </div>
-<h5 id="now-lets-apply-the-rolebinding">Now Lets apply the RoleBinding</h5>
+<h5 id="now-apply-the-rolebinding">Now apply the RoleBinding</h5>
 <div class="highlight"><pre><span></span><span class="go">cat &lt;&lt;EOF | microk8s.kubectl apply -f -</span>
 <span class="go">apiVersion: rbac.authorization.k8s.io/v1</span>
 <span class="go">kind: RoleBinding</span>
@@ -808,6 +942,212 @@
 <p>When creating a RoleBinding you will need to target a namespace, an existing role (roleRef) in that namespace and a user, group, or service account (subject).</p>
 </div>
 <h4 id="using-our-new-role">Using our new role</h4>
+<p>Now let's add a sample deployment to the <code>dev</code> namespace based on Istio's <a href="https://github.com/istio/istio/blob/master/samples/httpbin/httpbin.yaml" target="_blank">httpbin</a> sample application.</p>
+<h5 id="deploy-a-reference-pod">Deploy a reference pod</h5>
+<p>The sample application deployment will launch a single pod with a python based application which will use the default service account in the <code>dev</code> namespace. Refer to <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server" target="_blank">Kubernetes documentation</a> to get more information on the default behavior when launching a pod.</p>
+<div class="highlight"><pre><span></span><span class="go">cat &lt;&lt;EOF | microk8s.kubectl apply -f -</span>
+<span class="go">apiVersion: apps/v1</span>
+<span class="go">kind: Deployment</span>
+<span class="go">metadata:</span>
+<span class="go">  name: httpbin</span>
+<span class="go">  namespace: dev</span>
+<span class="go">spec:</span>
+<span class="go">  replicas: 1</span>
+<span class="go">  selector:</span>
+<span class="go">    matchLabels:</span>
+<span class="go">      app: httpbin</span>
+<span class="go">      version: v1</span>
+<span class="go">  template:</span>
+<span class="go">    metadata:</span>
+<span class="go">      labels:</span>
+<span class="go">        app: httpbin</span>
+<span class="go">        version: v1</span>
+<span class="go">    spec:</span>
+<span class="go">      containers:</span>
+<span class="go">      - image: docker.io/kennethreitz/httpbin</span>
+<span class="go">        imagePullPolicy: IfNotPresent</span>
+<span class="go">        name: httpbin</span>
+<span class="go">        ports:</span>
+<span class="go">        - containerPort: 80</span>
+<span class="go">EOF</span>
+</pre></div>
+
+<div class="admonition example">
+<p class="admonition-title">Now confirm the Service Account used for the Pod</p>
+<p>Below we confirmed that the deployment launched the pod with the <code>default</code> service account.
+<div class="highlight"><pre><span></span><span class="gp">$</span> microk8s.kubectl get pod httpbin-768b999cb5-5c4cl -n dev -o yaml<span class="p">|</span> grep serviceAccountName
+<span class="go">  serviceAccountName: default</span>
+</pre></div></p>
+<p>Also note that Kubernetes automatically mounts the default token into the pod
+<div class="highlight"><pre><span></span><span class="gp">$</span> microk8s.kubectl get pod httpbin-768b999cb5-5c4cl -n dev -o yaml
+<span class="go">apiVersion: v1</span>
+<span class="go">kind: Pod</span>
+<span class="go">metadata:</span>
+<span class="go">[snipped]</span>
+<span class="go">  name: httpbin-768b999cb5-5c4cl</span>
+<span class="go">[snipped]</span>
+<span class="go">    volumeMounts:</span>
+<span class="go">    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount</span>
+<span class="go">      name: default-token-nlzgt</span>
+<span class="go">      readOnly: true</span>
+</pre></div></p>
+<p>Exec into the httpbin container and see what data gets mounted in as a result
+<div class="highlight"><pre><span></span><span class="gp">root@httpbin-768b999cb5-5c4cl:/#</span> ls -l /var/run/secrets/kubernetes.io/serviceaccount
+<span class="go">total 0</span>
+<span class="go">lrwxrwxrwx 1 root root 13 Jan  3 04:08 ca.crt -&gt; ..data/ca.crt</span>
+<span class="go">lrwxrwxrwx 1 root root 16 Jan  3 04:08 namespace -&gt; ..data/namespace</span>
+<span class="go">lrwxrwxrwx 1 root root 12 Jan  3 04:08 token -&gt; ..data/token</span>
+
+<span class="gp">root@httpbin-768b999cb5-5c4cl:/#</span> cat /var/run/secrets/kubernetes.io/serviceaccount/namespace<span class="p">;</span> <span class="nb">echo</span>
+<span class="go">dev</span>
+
+<span class="gp">root@httpbin-768b999cb5-5c4cl:/#</span> cat /var/run/secrets/kubernetes.io/serviceaccount/token<span class="p">;</span> <span class="nb">echo</span>
+<span class="go">eyJhbGciOiJSUzI1NiIsImtpZCI6Ikxh...EsHorrcKBTnSa10OORjOrFpg</span>
+</pre></div></p>
+</div>
+<h6 id="how-can-we-leverage-the-service-account">How can we leverage the service account</h6>
+<p>We now know that Kubernetes automatically assigns a service account and mounts in the token and namespace which can be leveraged by tools such as <code>kubectl</code> and Kubernetes client libraries. Let's see how this can be useful and add <code>kubectl</code> to the container and attempt to perform some commands and see if anything special is needed to get it to work.</p>
+<div class="admonition example">
+<p class="admonition-title">Issue commands from within the Pod container</p>
+<p>First we download <code>kubectl</code> binary down to the Microk8s instance
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl -s -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl
+<span class="gp">$</span> chmod +x kubectl
+<span class="gp">$</span> ls
+<span class="go">kubectl  snap</span>
+</pre></div></p>
+<p>Now we copy the <code>kubectl</code> into the Pod's container
+<div class="highlight"><pre><span></span><span class="gp">$</span> microk8s.kubectl get pods -n dev
+<span class="go">NAME                       READY   STATUS    RESTARTS   AGE</span>
+<span class="go">httpbin-768b999cb5-5c4cl   1/1     Running   0          44m</span>
+<span class="gp">$</span> microk8s.kubectl cp kubectl dev/httpbin-768b999cb5-5c4cl:/tmp/kubectl
+<span class="gp">$</span>
+</pre></div></p>
+<p>Finally, let's exec into the container and run the <code>/tmp/kubectl get pods</code> command
+<div class="highlight"><pre><span></span><span class="gp">$</span> microk8s.kubectl <span class="nb">exec</span> -it httpbin-768b999cb5-5c4cl -n dev -- /bin/bash
+<span class="gp">root@httpbin-768b999cb5-5c4cl:/#</span> /tmp/kubectl get pods
+<span class="go">Error from server (Forbidden): pods is forbidden: User &quot;system:serviceaccount:dev:default&quot; cannot list resource &quot;pods&quot; in API group &quot;&quot; in the namespace &quot;dev&quot;</span>
+</pre></div></p>
+</div>
+<h6 id="review">Review</h6>
+<p>Examining what we know so far is that by default when we don't define a service account Kubernetes will automatically assign one and mount in the account's token and the namespace of the pod which we can use a tool like <code>kubectl</code> to execute commands. Looking specifically at the above example we can see that by running <code>/tmp/kubectl get pods</code> it can determine the pod's namespace and token to use by looking in that directory.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>How does <code>kubectl</code> know what endpoint to issue calls against to hit the Kubernetes API?</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">It turns out Kubernetes injects env vars into the pod</p>
+<div class="highlight"><pre><span></span><span class="gp">root@httpbin-768b999cb5-5c4cl:/#</span> env<span class="p">|</span> grep -i kubernetes
+<span class="go">KUBERNETES_PORT_443_TCP_PROTO=tcp</span>
+<span class="go">KUBERNETES_PORT_443_TCP_ADDR=10.152.183.1</span>
+<span class="go">KUBERNETES_PORT=tcp://10.152.183.1:443</span>
+<span class="go">KUBERNETES_SERVICE_PORT_HTTPS=443</span>
+<span class="go">KUBERNETES_PORT_443_TCP_PORT=443</span>
+<span class="go">KUBERNETES_PORT_443_TCP=tcp://10.152.183.1:443</span>
+<span class="go">KUBERNETES_SERVICE_PORT=443</span>
+<span class="go">KUBERNETES_SERVICE_HOST=10.152.183.1</span>
+</pre></div>
+
+<p>If we unset the <code>KUBERNETES_SERVICE_HOST</code> var we confirm it breaks <code>kubectl</code>
+<div class="highlight"><pre><span></span><span class="gp">root@httpbin-768b999cb5-5c4cl:/#</span> <span class="nb">unset</span> KUBERNETES_SERVICE_HOST
+<span class="gp">root@httpbin-768b999cb5-5c4cl:/#</span> /tmp/kubectl get pods
+<span class="go">The connection to the server localhost:8080 was refused - did you specify the right host or port?</span>
+</pre></div></p>
+</div>
+<h5 id="deploy-a-pod-that-uses-our-new-role">Deploy a pod that uses our new role</h5>
+<p>Since we now know what happens when we launch a pod with the <code>default</code> service account let's launch a new pod that will use the <code>dev-pod-user</code> service account and the <code>full-access-to-pods</code> role we created earlier.</p>
+<p>We will launch a new deployment called <code>deb-test</code> and assign the new service account <code>dev-pod-user</code> into the <code>dev</code> namespace.</p>
+<div class="highlight"><pre><span></span><span class="go">cat &lt;&lt;EOF | microk8s.kubectl apply -f -</span>
+<span class="go">apiVersion: apps/v1</span>
+<span class="go">kind: Deployment</span>
+<span class="go">metadata:</span>
+<span class="go">  name: deb-test</span>
+<span class="go">  namespace: dev</span>
+<span class="go">spec:</span>
+<span class="go">  replicas: 1</span>
+<span class="go">  selector:</span>
+<span class="go">    matchLabels:</span>
+<span class="go">      app: deb-test</span>
+<span class="go">  template:</span>
+<span class="go">    metadata:</span>
+<span class="go">      labels:</span>
+<span class="go">        app: deb-test</span>
+<span class="go">    spec:</span>
+<span class="go">      serviceAccountName: dev-pod-user</span>
+<span class="go">      containers:</span>
+<span class="go">      - image: debian:latest</span>
+<span class="go">        imagePullPolicy: IfNotPresent</span>
+<span class="go">        name: deb-test</span>
+<span class="go">        command:</span>
+<span class="go">          - sleep</span>
+<span class="go">          - &quot;3600&quot;</span>
+<span class="go">      restartPolicy: Always</span>
+<span class="go">EOF</span>
+</pre></div>
+
+<div class="admonition example">
+<p class="admonition-title">Now confirm the Service Account used for the new Pod</p>
+<p>We first confirm the new deployment launched the pod with the <code>dev-pod-user</code> service account.
+<div class="highlight"><pre><span></span><span class="gp">$</span> microk8s.kubectl get pod deb-test-669c58cc9d-99gz4 -n dev -o yaml<span class="p">|</span> grep serviceAccountName
+<span class="go">  serviceAccountName: dev-pod-user</span>
+</pre></div></p>
+<p>Also confirm that Kubernetes mounts the <code>dev-pod-user</code> token into the pod
+<div class="highlight"><pre><span></span><span class="gp">$</span> microk8s.kubectl get pod deb-test-669c58cc9d-99gz4 -n dev -o yaml
+<span class="go">apiVersion: v1</span>
+<span class="go">kind: Pod</span>
+<span class="go">metadata:</span>
+<span class="go">[snipped]</span>
+<span class="go">  name: deb-test-669c58cc9d-99gz4</span>
+<span class="go">  namespace: dev</span>
+<span class="go">[snipped]</span>
+<span class="go">    volumeMounts:</span>
+<span class="go">    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount</span>
+<span class="go">      name: dev-pod-user-token-mngkj</span>
+<span class="go">      readOnly: true</span>
+</pre></div></p>
+</div>
+<h6 id="now-we-leverage-the-new-service-account">Now we leverage the new service account</h6>
+<p>Great! We confirmed that with our new deployment Kubernetes assigned the <code>dev-pod-user</code> service account and mounted in the token and namespace as it did with our reference deployment. Let's repeat the test from before but it will now use our new role.</p>
+<div class="admonition example">
+<p class="admonition-title">Issue commands from within the new Pod container</p>
+<p>Since we already downloaded the <code>kubectl</code> binary we just need to copy it into the new container
+<div class="highlight"><pre><span></span><span class="gp">$</span> microk8s.kubectl get pods -n dev<span class="p">|</span> grep deb-test
+<span class="go">deb-test-669c58cc9d-99gz4   1/1     Running   0          10m</span>
+<span class="gp">$</span> microk8s.kubectl cp kubectl dev/deb-test-669c58cc9d-99gz4:/tmp/kubectl
+<span class="gp">$</span>
+</pre></div></p>
+<p>Now let's exec into the deb-test container and run <code>/tmp/kubectl get pods</code> again and see if we still get a permission error
+<div class="highlight"><pre><span></span><span class="gp">$</span> microk8s.kubectl <span class="nb">exec</span> -it deb-test-669c58cc9d-99gz4 -n dev -- /bin/bash
+<span class="gp">root@deb-test-669c58cc9d-99gz4:/#</span> /tmp/kubectl get pods
+<span class="go">NAME                        READY   STATUS    RESTARTS   AGE</span>
+<span class="go">deb-test-669c58cc9d-99gz4   1/1     Running   0          13m</span>
+<span class="go">httpbin-768b999cb5-5c4cl    1/1     Running   0          111m</span>
+</pre></div></p>
+<p>Let's also try to delete another pod in the <code>dev</code> namespace and confirm that also works
+<div class="highlight"><pre><span></span><span class="gp">root@deb-test-669c58cc9d-99gz4:/#</span> /tmp/kubectl delete pod httpbin-768b999cb5-5c4cl
+<span class="go">pod &quot;httpbin-768b999cb5-5c4cl&quot; deleted</span>
+<span class="gp">root@deb-test-669c58cc9d-99gz4:/#</span> /tmp/kubectl get pods
+<span class="go">NAME                        READY   STATUS    RESTARTS   AGE</span>
+<span class="go">deb-test-669c58cc9d-99gz4   1/1     Running   0          23m</span>
+<span class="go">httpbin-768b999cb5-dtwhd    1/1     Running   0          13s</span>
+</pre></div></p>
+<p>🎉🎉🎉 Success! We are now able to get and delete pods in the dev namespace. Our role works as expected.</p>
+</div>
+<p>We confirmed that by using our new service account and role we created earlier we have full access to the pod API in the <code>dev</code> namespace. Like we mentioned in the <a href="#the-basics">The Basics</a> section a Role only applies to the namespace it was created in. Let's attempt to get pods again but across all namespaces.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>What happens across namespaces?</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">We get a different permission error</p>
+<div class="highlight"><pre><span></span><span class="gp">root@deb-test-669c58cc9d-99gz4:/#</span> /tmp/kubectl get pods --all-namespaces
+<span class="go">Error from server (Forbidden): pods is forbidden: User &quot;system:serviceaccount:dev:dev-pod-user&quot; cannot list resource &quot;pods&quot; in API group &quot;&quot; at the cluster scope</span>
+</pre></div>
+
+<p>🔥🔥🔥 It fails with another permission issue but we expected this one.</p>
+</div>
+<h6 id="review_1">Review</h6>
+<p>As expected, we get a permission error in the above example saying that you cannot list resource "pods" at the cluster scope in the core API group. Basically, in order to list pods outside the <code>dev</code> namespace we will need to create a ClusterRole (cluster scoped).</p>
+<h4 id="clusterrole">ClusterRole</h4>
 <p>TODO</p>
                 
                   
